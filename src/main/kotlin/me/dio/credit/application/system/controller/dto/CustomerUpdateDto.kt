@@ -13,7 +13,7 @@ data class CustomerUpdateDto (
     val complement: String
 ) {
 
-    fun toEntity(customer: Customer): Customer{
+    fun toEntity(customer: Customer): Customer {
         customer.firstName = this.firstName
         customer.lastName = this.lastName
         customer.income = this.income
@@ -21,5 +21,6 @@ data class CustomerUpdateDto (
         customer.address.street = this.street
         customer.address.houseNumber = this.houseNumber
         customer.address.complement = this.complement
+        return customer
     }
 }

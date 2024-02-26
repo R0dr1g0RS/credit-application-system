@@ -5,6 +5,8 @@ import me.dio.credit.application.system.controller.dto.CustomerUpdateDto
 import me.dio.credit.application.system.controller.dto.CustomerView
 import me.dio.credit.application.system.model.Customer
 import me.dio.credit.application.system.services.impl.CustomerService
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -22,15 +24,15 @@ class CustomerResource(
 ) {
 
     @PostMapping
-    fun saveCustomer(@RequestBody customerDto: CustomerDto): String {
+    fun saveCustomer(@RequestBody customerDto: CustomerDto): ResponseEntity<String> {
         val savedCustomer = this.customerService.save(customerDto.toEntity())
-        return "Customer ${savedCustomer.email} saved"
+        return ResponseEntity.status(HttpStatus.CREATED).body("Customer ${savedCustomer.email} saved")
     }
 
     @GetMapping("/{customerId}")
-    fun findById(@PathVariable customerId: Long): CustomerView{
+    fun findById(@PathVariable customerId: Long): ResponseEntity<CustomerView>{
         val customer: Customer = this.customerService.findById(customerId)
-        return CustomerView(customer)
+        return ResponseEntity.status(HttpStatus.CREATED).body(CustomerView(customer))
     }
 
     @DeleteMapping("/{customerId}")
@@ -41,11 +43,11 @@ class CustomerResource(
     @PatchMapping
     fun update(
         @RequestParam(value = "customerId") customerId: Long,
-        @RequestBody customerUpdateDto: CustomerUpdateDto): CustomerView
+        @RequestBody customerUpdateDto: CustomerUpdateDto): ResponseEntity<CustomerView>
     {
         val customer = this.customerService.findById(customerId)
         val customerToUpdate = customerUpdateDto.toEntity(customer)
         val customerUpdated: Customer = this.customerService.save(customerToUpdate)
-        return CustomerView(customerUpdated)
+        return ResponseEntity.status(HttpStatus.CREATED).body( CustomerView(customerUpdated))
     }
 }

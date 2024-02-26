@@ -25,13 +25,12 @@ data class CustomerDto (
             cpf = this.cpf,
             email = this.email,
             password = this.password,
-            income = this.cpf,
+            income = this.income,
             address = Address(
                 zipCode = this.zipCode,
                 street = this.street,
                 houseNumber = this.houseNumber,
                 complement = this.complement
             )
-
         )
 }

@@ -27,13 +27,13 @@ class CustomerResource(
         return "Customer ${savedCustomer.email} saved"
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{customerId}")
     fun findById(@PathVariable customerId: Long): CustomerView{
         val customer: Customer = this.customerService.findById(customerId)
         return CustomerView(customer)
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{customerId}")
     fun deleteCustomer(@PathVariable customerId: Long){
         this.customerService.delete(customerId)
     }

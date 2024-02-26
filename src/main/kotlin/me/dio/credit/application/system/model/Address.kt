@@ -8,5 +8,5 @@ data class Address(
     @Column(nullable = false) var zipCode: String = "",
     @Column(nullable = false) var street: String = "",
     @Column(nullable = false) var houseNumber: String = "",
-    @Column var complement: String = ""
+    @Column(nullable = false) var complement: String = ""
 )

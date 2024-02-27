@@ -11,13 +11,20 @@ import java.math.BigDecimal
 data class CustomerDto (
     @field:NotEmpty(message = "Invalid first name") val firstName: String,
     @field:NotEmpty(message = "Invalid last name") val lastName: String,
+
+    @field:NotEmpty(message = "Invalid CPF")
     @field:CPF(message = "Invalid CPF") val cpf: String,
+
     @field:NotNull(message = "Invalid income") val income: BigDecimal,
-    @field:Email(message = "Invalid email") @field:NotEmpty(message = "Invalid email") val email: String,
+
+    @field:NotEmpty(message = "Invalid email")
+    @field:Email(message = "Invalid email") val email: String,
+
     @field:NotEmpty(message = "Invalid password") val password: String,
     @field:NotEmpty(message = "Invalid zipcode") val zipCode: String,
     @field:NotEmpty(message = "Invalid street") val street: String,
     @field:NotEmpty(message = "Invalid house number") val houseNumber: String,
+
     val complement: String
 ){
 

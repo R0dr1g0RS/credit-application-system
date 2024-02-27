@@ -4,13 +4,17 @@ import jakarta.validation.constraints.Future
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull
+import me.dio.credit.application.system.annotation.MaxDate
 import me.dio.credit.application.system.model.Credit
 import me.dio.credit.application.system.model.Customer
 import java.math.BigDecimal
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class CreditDto (
     @field:NotNull(message = "Invalid credit value") val creditValue: BigDecimal,
+
+    @field:MaxDate(maxMonths = 3, message = "Invalid date")
     @field:Future(message = "Invalid date") val dayFirstOfInstallment: LocalDate,
 
     @Min(1, message = "The minimum number of installments is 1")
